@@ -87,7 +87,7 @@ export function HomePage() {
             <div className="animate-rise animate-rise-delay-2 relative">
               <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-[0_24px_60px_-28px_oklch(0.3_0.04_240_/_0.45)]">
                 <img
-                  src="/images/07-promo-marquee-1400x560.png"
+                  src="/images/07-promo-marquee-1400x560.jpg"
                   alt="SiteLens analyzing a live webpage with scores for technology, SEO, structure, CTAs, images and performance"
                   width={1400}
                   height={560}
@@ -142,27 +142,27 @@ export function HomePage() {
             <div className="mt-12 grid gap-8">
               {[
                 {
-                  src: "/images/01-overview-1280x800.png",
+                  src: "/images/01-overview-1280x800.jpg",
                   title: "Website Score + module answers",
                   caption: "Overview leads with the score, then the six answers and key issues.",
                 },
                 {
-                  src: "/images/02-tech-stack-1280x800.png",
+                  src: "/images/02-tech-stack-1280x800.jpg",
                   title: "Technology with evidence",
                   caption: "Every detection ships with the raw signal that proved it.",
                 },
                 {
-                  src: "/images/03-seo-audit-1280x800.png",
+                  src: "/images/03-seo-audit-1280x800.jpg",
                   title: "SEO checks you can fix",
                   caption: "Fail / warn / pass status with details pulled from the live head and body.",
                 },
                 {
-                  src: "/images/04-calls-to-action-1280x800.png",
+                  src: "/images/04-calls-to-action-1280x800.jpg",
                   title: "CTA conversion paths",
                   caption: "Where buttons sit, what they say, and where they send people.",
                 },
                 {
-                  src: "/images/05-performance-1280x800.png",
+                  src: "/images/05-performance-1280x800.jpg",
                   title: "Quick performance check",
                   caption: "Local Web Vitals and resource weight — a fast read, not a Lighthouse report.",
                 },

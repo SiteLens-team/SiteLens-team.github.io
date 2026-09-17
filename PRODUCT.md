@@ -68,7 +68,7 @@ One-click page analysis that runs entirely on-device: tech stack, SEO, structure
 ## Evidence on Hand
 
 - Product docs: `../Chrome/docs/SiteLens-产品定位.md`, feature/copy docs
-- Store assets: `01-overview` … `05-performance` (1280×800), `06-promo-tile-440x280`, `07-promo-marquee-1400x560`, promo video
+- Store assets: `01-overview` … `05-performance` (1280×800 JPEG), `07-promo-marquee-1400x560`. Promo tile / promo video exist in Chrome store assets but are not used on this site.
 - No customer testimonials, press, pricing, or live Chrome Web Store URL — do not fabricate
 
 ## Product Principles
