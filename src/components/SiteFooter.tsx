@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <img src="/icons/icon_64.png" alt="" width={20} height={20} className="size-5 rounded" />
           <span>
-            {PRODUCT.name} · v{PRODUCT.version}
+            {PRODUCT.name}
           </span>
         </div>
         <Link

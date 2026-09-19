@@ -1,10 +1,10 @@
 /** Chrome Web Store listing URL — set when published. Empty = show coming-soon CTA. */
-export const CHROME_STORE_URL = ""
+export const CHROME_STORE_URL =
+  "https://chromewebstore.google.com/detail/sitelens-%E2%80%94-website-seo-an/jjmmmpgikmdibpffiphnbaopgpafpgih"
 
 export const PRODUCT = {
   name: "SiteLens",
   fullName: "SiteLens — Website & SEO Analyzer",
-  version: "1.0.1",
   tagline:
     "One click to analyze any page: tech stack, SEO, structure, CTAs, images and performance.",
   privacyNote:
