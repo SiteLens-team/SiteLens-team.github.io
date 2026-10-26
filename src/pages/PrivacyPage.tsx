@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter"
 import { SiteHeader } from "@/components/SiteHeader"
 import { PRODUCT } from "@/lib/constants"
 
-const updated = "September 16, 2026"
+const updated = "October 26, 2026"
 
 export function PrivacyPage() {
   return (
@@ -54,8 +54,13 @@ export function PrivacyPage() {
               <p className="text-muted-foreground">
                 When you start an analysis, SiteLens reads information already available in the current
                 browser tab — such as the page DOM, metadata, scripts, images, forms, links, and
-                browser performance APIs — and evaluates it with local rules. Results are shown in an
-                on-page panel and optionally exported by you as JSON or CSV files on your own machine.
+                browser performance APIs — and evaluates it with local rules across scored modules
+                (technology, SEO, structure, CTAs, images, performance) plus accessibility and security
+                checks. Results are shown in an on-page panel and optionally exported by you as JSON or
+                CSV files on your own machine. Options also include a local multi-page Site Audit. An
+                optional “Send to MCP” action can push the latest report only to a companion process on{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 text-sm">127.0.0.1</code> that you run
+                yourself — never to a SiteLens server.
               </p>
             </section>
 
@@ -83,8 +88,19 @@ export function PrivacyPage() {
               <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
                 <li>
                   <strong className="font-medium text-foreground">Page content in the active tab</strong>{" "}
-                  — used to detect technology signatures, SEO signals, structure, CTAs, images, and
-                  performance metrics while you analyze that page.
+                  — used to detect technology signatures, SEO signals, structure, CTAs, images,
+                  performance metrics, accessibility cues, and security hygiene while you analyze that
+                  page.
+                </li>
+                <li>
+                  <strong className="font-medium text-foreground">Site Audit crawl data</strong> — when
+                  you run a multi-page audit from Options, fetched page summaries and issues stay in
+                  extension storage on your device unless you export them.
+                </li>
+                <li>
+                  <strong className="font-medium text-foreground">Optional local MCP push</strong> — only
+                  if you choose Send to MCP and a local companion is listening on localhost; the report
+                  is not uploaded to any remote SiteLens service.
                 </li>
                 <li>
                   <strong className="font-medium text-foreground">Network request summaries shown in

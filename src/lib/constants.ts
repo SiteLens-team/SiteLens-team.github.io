@@ -1,6 +1,5 @@
 /** Chrome Web Store listing URL — set when published. Empty = show coming-soon CTA. */
-export const CHROME_STORE_URL =
-  "https://chromewebstore.google.com/detail/sitelens-%E2%80%94-website-seo-an/jjmmmpgikmdibpffiphnbaopgpafpgih"
+export const CHROME_STORE_URL = ""
 
 export const PRODUCT = {
   name: "SiteLens",
@@ -11,6 +10,7 @@ export const PRODUCT = {
     "Runs entirely in your browser: no AI, no server, no upload, no account.",
 } as const
 
+/** Six modules that feed the Website Score. */
 export const MODULES = [
   {
     id: "tech",
@@ -20,7 +20,8 @@ export const MODULES = [
   {
     id: "seo",
     question: "Where is the SEO broken?",
-    blurb: "Titles, meta, headings, robots and schema checks you can act on.",
+    blurb:
+      "Titles, meta, headings, robots, schema validation, hreflang, and site files (robots / sitemap / llms).",
   },
   {
     id: "structure",
@@ -41,5 +42,48 @@ export const MODULES = [
     id: "performance",
     question: "How fast is the page?",
     blurb: "A quick local snapshot of Web Vitals and resource weight — not Lighthouse.",
+  },
+] as const
+
+/** Display-only modules — shown in the panel, not folded into Website Score. */
+export const EXTRA_MODULES = [
+  {
+    id: "a11y",
+    question: "Is the page accessible?",
+    blurb: "Lang attribute, control labels, button names, heading order, and ARIA roles.",
+  },
+  {
+    id: "security",
+    question: "Any security hygiene issues?",
+    blurb: "HTTPS / mixed content, response security headers, and X-Robots-Tag signals.",
+  },
+] as const
+
+/** Secondary capabilities beyond the scored six + display modules. */
+export const HIGHLIGHTS = [
+  {
+    id: "locate",
+    title: "Locate on page",
+    blurb: "Hover to preview, click to scroll and highlight the real element.",
+  },
+  {
+    id: "export",
+    title: "Export JSON / CSV",
+    blurb: "Download the full report when you choose — files stay on your machine.",
+  },
+  {
+    id: "languages",
+    title: "7 languages",
+    blurb: "English, Chinese, French, Portuguese, German, Italian, and Spanish.",
+  },
+  {
+    id: "site-audit",
+    title: "Site Audit",
+    blurb: "Multi-page crawl from Options — whole-site issues, not just the tab you opened.",
+  },
+  {
+    id: "mcp",
+    title: "Send to MCP",
+    blurb: "Optional local bridge so Cursor agents can read the latest report on your machine.",
   },
 ] as const

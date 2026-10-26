@@ -1,22 +1,32 @@
 import { Link } from "react-router-dom"
 import {
+  AccessibilityIcon,
   CpuIcon,
   DownloadIcon,
+  GlobeIcon,
   HardDriveIcon,
   ImageIcon,
   LayersIcon,
   LocateIcon,
   LockIcon,
+  MapIcon,
   MousePointerClickIcon,
   ScanIcon,
   SearchIcon,
   ShieldCheckIcon,
+  TerminalIcon,
   ZapIcon,
 } from "@animateicons/react/lucide"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { SiteFooter } from "@/components/SiteFooter"
 import { SiteHeader } from "@/components/SiteHeader"
-import { CHROME_STORE_URL, MODULES, PRODUCT } from "@/lib/constants"
+import {
+  CHROME_STORE_URL,
+  EXTRA_MODULES,
+  HIGHLIGHTS,
+  MODULES,
+  PRODUCT,
+} from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
 const moduleIcons = {
@@ -26,6 +36,19 @@ const moduleIcons = {
   cta: MousePointerClickIcon,
   images: ImageIcon,
   performance: ZapIcon,
+} as const
+
+const extraModuleIcons = {
+  a11y: AccessibilityIcon,
+  security: ShieldCheckIcon,
+} as const
+
+const highlightIcons = {
+  locate: LocateIcon,
+  export: DownloadIcon,
+  languages: GlobeIcon,
+  "site-audit": MapIcon,
+  mcp: TerminalIcon,
 } as const
 
 function InstallCta({ className, size = "lg" }: { className?: string; size?: "default" | "lg" }) {
@@ -88,7 +111,7 @@ export function HomePage() {
               <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-[0_24px_60px_-28px_oklch(0.3_0.04_240_/_0.45)]">
                 <img
                   src="/images/07-promo-marquee-1400x560.jpg"
-                  alt="SiteLens analyzing a live webpage with scores for technology, SEO, structure, CTAs, images and performance"
+                  alt="SiteLens analyzing a live webpage with scores for technology, SEO, structure, CTAs, images and performance, plus accessibility and security checks"
                   width={1400}
                   height={560}
                   className="hero-shot block h-auto w-full"
@@ -98,14 +121,15 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* Six questions */}
+        {/* Six scored questions + display modules */}
         <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
           <h2 className="font-heading max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Six questions. One local scan.
+            Six scored answers. One local scan.
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            SiteLens answers what you actually need to know about the page in front of you — with
-            evidence, scores, and click-to-locate highlights.
+            SiteLens scores the six things you actually need to know about the page in front of you —
+            with evidence, module scores, and click-to-locate highlights. Accessibility and security
+            checks show up alongside them without changing the Website Score formula.
           </p>
 
           <ul className="mt-12 grid gap-3 sm:grid-cols-2">
@@ -127,16 +151,70 @@ export function HomePage() {
               )
             })}
           </ul>
+
+          <div className="mt-10 rounded-2xl border border-border/80 bg-card/40 p-5 sm:p-6">
+            <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+              Also in the panel · display only
+            </p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {EXTRA_MODULES.map((mod) => {
+                const Icon = extraModuleIcons[mod.id]
+                return (
+                  <li key={mod.id} className="flex gap-4 rounded-xl bg-background/70 px-3 py-3">
+                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-lens-soft text-lens">
+                      <Icon size={20} />
+                    </div>
+                    <div>
+                      <p className="font-heading text-base font-medium text-foreground">{mod.question}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{mod.blurb}</p>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        </section>
+
+        {/* Also included */}
+        <section className="border-y border-border/70 bg-card/30 py-16">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Also included
+            </h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              Beyond the scored scan: locate and export on every page, seven UI languages, a whole-site
+              crawl in Options, and an optional local MCP bridge for agents.
+            </p>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {HIGHLIGHTS.map((item) => {
+                const Icon = highlightIcons[item.id]
+                return (
+                  <li
+                    key={item.id}
+                    className="rounded-2xl border border-border/70 bg-background/80 px-4 py-4"
+                  >
+                    <div className="mb-3 text-lens">
+                      <Icon size={24} />
+                    </div>
+                    <h3 className="font-heading text-base font-medium text-foreground">{item.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.blurb}</p>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </section>
 
         {/* Product proof from store assets */}
-        <section className="border-y border-border/70 bg-card/40 py-20">
+        <section className="border-b border-border/70 bg-card/40 py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               See it on a real page
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Screenshots from the Chrome Web Store listing — the same UI that runs in your browser.
+              Product screenshots from the listing assets — the same UI that runs in your browser.
+              Newer accessibility and security panels ship in the extension; these frames show the
+              core scored modules.
             </p>
 
             <div className="mt-12 grid gap-8">
@@ -144,7 +222,8 @@ export function HomePage() {
                 {
                   src: "/images/01-overview-1280x800.jpg",
                   title: "Website Score + module answers",
-                  caption: "Overview leads with the score, then the six answers and key issues.",
+                  caption:
+                    "Overview leads with the score, then the six scored answers and key issues. Accessibility and security appear as display modules beside them.",
                 },
                 {
                   src: "/images/02-tech-stack-1280x800.jpg",
@@ -154,7 +233,8 @@ export function HomePage() {
                 {
                   src: "/images/03-seo-audit-1280x800.jpg",
                   title: "SEO checks you can fix",
-                  caption: "Fail / warn / pass status with details pulled from the live head and body.",
+                  caption:
+                    "Fail / warn / pass status with titles, meta, headings, schema, hreflang, and site-file detail from the live page.",
                 },
                 {
                   src: "/images/04-calls-to-action-1280x800.jpg",
@@ -194,8 +274,9 @@ export function HomePage() {
             Privacy is the product
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            First version deliberately has no AI, no account, and no server. Everything you see is
-            derived from rules running against the page you opened.
+            Deliberately no AI, no account, and no server. Everything you see is derived from rules
+            running against the page you opened — including optional Site Audit crawls and Send to MCP,
+            which stay on your machine.
           </p>
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

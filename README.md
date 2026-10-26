@@ -1,34 +1,26 @@
-# SiteLens Web
+# SiteLens marketing site
 
-Static marketing site and Privacy Policy for the [SiteLens](../Chrome) Chrome extension.
+Static landing + Privacy Policy for the SiteLens Chrome extension.
 
-- Stack: Vite + React + TypeScript + [shadcn/ui](https://ui.shadcn.com/) + [AnimateIcons](https://animateicons.in/)
-- Deploy: [Render Static Site](https://dashboard.render.com/static/new?onboarding=active)
+- Stack: Vite + React + TypeScript + Tailwind + shadcn/ui + AnimateIcons
+- Deploy: [GitHub Pages](https://pages.github.com/) via `.github/workflows/pages.yml` → https://sitelens-team.github.io/
 
 ## Develop
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
-
-## Build
 
 ```bash
-npm run build
+pnpm build
+pnpm preview
 ```
 
-Publish directory: `dist`
+## Chrome Web Store CTA
 
-## Render
+`CHROME_STORE_URL` in `src/lib/constants.ts` is empty until the listing is live — the site shows **Coming soon**. Set a real store URL there when the extension is published.
 
-1. Create a **Static Site** on Render pointing at this `Web` folder (or monorepo root with root directory `Web`).
-2. Build command: `npm ci && npm run build`
-3. Publish directory: `dist`
-4. SPA rewrite: `/*` → `/index.html` (already in `render.yaml`)
+## Privacy URL
 
-After the Chrome Web Store listing is live, set `CHROME_STORE_URL` in `src/lib/constants.ts`.
-
-## Privacy Policy URL
-
-Use `https://<your-render-domain>/privacy` as the Chrome Web Store privacy policy link.
+Use `https://sitelens-team.github.io/privacy` as the Chrome Web Store privacy policy link once you submit the listing.

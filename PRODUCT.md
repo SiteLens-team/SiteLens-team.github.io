@@ -8,52 +8,59 @@ web
 
 ## Stack
 
-delegated: Vite + React + TypeScript + Tailwind + shadcn/ui + @animateicons/react, built as a static site for [Render Static Sites](https://dashboard.render.com/static/new?onboarding=active). Chosen to match the user's binding UI constraints (shadcn/ui + AnimateIcons) and Chrome Web Store–friendly multi-page static output (`/` + `/privacy`).
+delegated: Vite + React + TypeScript + Tailwind + shadcn/ui + @animateicons/react, built as a static site for [GitHub Pages](https://pages.github.com/) (user/org site `SiteLens-team.github.io`). Chosen to match the user's binding UI constraints (shadcn/ui + AnimateIcons) and Chrome Web Store–friendly multi-page static output (`/` + `/privacy`).
 
 ## Users
 
-Primary: web developers, SEO practitioners, and marketers who open an arbitrary page in Chrome and need a fast local read of tech stack, SEO, structure, CTAs, images, and performance — without creating an account or sending page data anywhere.
+Primary: web developers, SEO practitioners, and marketers who open an arbitrary page in Chrome and need a fast local read of tech stack, SEO, structure, CTAs, images, and performance — plus accessibility and security checks — without creating an account or sending page data anywhere.
 
-Secondary: Chrome Web Store reviewers and privacy-conscious visitors who need a clear privacy policy URL for listing.
+Secondary: Chrome Web Store reviewers and privacy-conscious visitors who need a clear privacy policy URL for listing. Developers who optionally pair the extension with the local `sitelens-mcp` companion in Cursor.
 
 ## Product Purpose
 
-SiteLens is a Chrome extension that analyzes the current page entirely in the browser. The marketing site exists to explain that offer, prove it with real store screenshots, drive Chrome Web Store install, and publish an accurate privacy policy.
+SiteLens is a Chrome extension that analyzes the current page entirely in the browser. The marketing site exists to explain that offer, prove it with real store screenshots, drive Chrome Web Store install (or show Coming soon until published), and publish an accurate privacy policy.
 
-Success: a visitor understands in one viewport that analysis is local (no AI, no server, no account), sees the six analysis dimensions with real product imagery, and can install or read the privacy policy.
+Success: a visitor understands in one viewport that analysis is local (no AI, no server, no account), sees the six scored analysis dimensions plus accessibility & security, learns about Site Audit / export / languages, and can install or read the privacy policy.
 
 ## Positioning
 
-One-click page analysis that runs entirely on-device: tech stack, SEO, structure, CTAs, images, and performance — with evidence you can verify, export as JSON/CSV, and locate on the live page. Differentiator the site must not blur: **no AI, no upload, no account, no telemetry.**
+One-click page analysis that runs entirely on-device: tech stack, SEO, structure, CTAs, images, and performance — with evidence you can verify, export as JSON/CSV, and locate on the live page. Accessibility and security panels are display-only (not in the Website Score). Differentiator the site must not blur: **no AI, no upload, no account, no telemetry.**
 
 ## Operating Context
 
-- Chrome extension (Manifest V3): popup entry → injected floating panel for full report; Options for language/theme/about.
+- Chrome extension (Manifest V3): popup entry → injected floating panel for full report; Options for language/theme/about and **Site Audit** (multi-page crawl).
 - Permissions: `storage`, `activeTab`, host access to `<all_urls>` for page analysis only.
-- Local prefs only in `chrome.storage.local` (locale, theme). Analysis reports stay in-tab memory unless the user exports.
-- Chrome Web Store listing assets live at `../Chrome/store-assets/final/`.
+- Local prefs only in `chrome.storage.local` (locale, theme, optional MCP port). Analysis reports stay in-tab memory unless the user exports or optionally pushes to a local MCP bridge (`127.0.0.1`).
+- Companion: open-source `sitelens-mcp` (local stdio) — not required for core use.
+- Chrome Web Store listing assets live at `../Chrome/store-assets/final/` (when present).
 
 ## Capabilities and Constraints
 
 **Extension capabilities (facts for marketing + privacy):**
 
-- Six modules: Technology, SEO, Structure, CTA, Images, Performance
+- Six **scored** modules: Technology, SEO, Structure, CTA, Images, Performance (`SCORED_MODULES`)
+- Display modules (not in score formula): Accessibility (a11y), Security
+- Richer SEO: schema validation, hreflang, site files (robots / sitemap / llms), headings detail
 - Website Score + per-module scores; key issues; hover/click locate on page
 - Export full report JSON/CSV; 7 languages; light/dark/system theme
+- Site Audit in Options: multi-page crawl with local reports
+- Optional **Send to MCP**: push latest report to local `sitelens-mcp` bridge for Cursor agents
 - Fully local rule-based analysis — no LLM, no backend
 
 **Site constraints:**
 
-- Static hosting only (no server runtime)
+- Static hosting only (GitHub Pages; no server runtime)
 - Must include Privacy Policy suitable for Chrome Web Store
 - Must use real store screenshots / promo art; do not invent customers, benchmarks, or store URLs that do not exist
 - Do not claim AI, cloud sync, accounts, or telemetry
+- Do not claim “available on Chrome Web Store” while `CHROME_STORE_URL` is empty — CTA is Coming soon
 
 **Open / assumed:**
 
 - ASSUMED: Marketing site primary language is English (Chrome Web Store default). Chinese product docs remain source of truth for accuracy.
-- ASSUMED: Chrome Web Store listing URL is not yet published; CTA may use a placeholder `#` or “Coming soon” until a real URL is provided.
+- ASSUMED: Chrome Web Store listing URL is not yet published; CTA uses empty `CHROME_STORE_URL` → “Coming soon”.
 - ASSUMED: Contact for privacy inquiries: omit email until provided; state data is not collected so no request channel is required for deletion.
+- ASSUMED: MCP is an optional companion for developers — do not oversell as a core consumer feature.
 
 ## Brand Commitments
 
@@ -74,7 +81,7 @@ One-click page analysis that runs entirely on-device: tech stack, SEO, structure
 ## Product Principles
 
 1. **Local is the product** — Privacy and on-device analysis are the headline, not a footnote.
-2. **Six questions, not a feature dump** — Lead with what the visitor learns about a page.
+2. **Six scored questions, then extras** — Lead with what the visitor learns about a page; accessibility, security, Site Audit, and MCP are secondary.
 3. **Show the real UI** — Use store screenshots; never fake dashboards or AI chat.
 4. **Claims must match the extension** — Every privacy or capability statement must be true of Manifest V3 permissions and local-only behavior.
 5. **Install is the only conversion** — One primary CTA toward Chrome Web Store (or clear “coming soon”).
