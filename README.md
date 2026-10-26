@@ -24,3 +24,9 @@ pnpm preview
 ## Privacy URL
 
 Use `https://sitelens-team.github.io/privacy` as the Chrome Web Store privacy policy link once you submit the listing.
+
+## Extension surfaces called out on the site
+
+- **Options** — language, appearance (auto / light / dark), and Site Audit
+- **Send to MCP** — optional local Cursor bridge from the panel
+

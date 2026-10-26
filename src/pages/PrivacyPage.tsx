@@ -57,8 +57,10 @@ export function PrivacyPage() {
                 browser performance APIs — and evaluates it with local rules across scored modules
                 (technology, SEO, structure, CTAs, images, performance) plus accessibility and security
                 checks. Results are shown in an on-page panel and optionally exported by you as JSON or
-                CSV files on your own machine. Options also include a local multi-page Site Audit. An
-                optional “Send to MCP” action can push the latest report only to a companion process on{" "}
+                CSV files on your own machine. The Extension’s <strong className="font-medium text-foreground">Options</strong>{" "}
+                page covers UI language, appearance (system / light / dark), and a local multi-page Site
+                Audit. An optional “Send to MCP” action in the panel can push the latest report only to a
+                companion process on{" "}
                 <code className="rounded bg-muted px-1.5 py-0.5 text-sm">127.0.0.1</code> that you run
                 yourself — never to a SiteLens server.
               </p>
@@ -109,8 +111,8 @@ export function PrivacyPage() {
                   when the tab closes.
                 </li>
                 <li>
-                  <strong className="font-medium text-foreground">Preferences</strong> — language and
-                  appearance (system / light / dark) stored with{" "}
+                  <strong className="font-medium text-foreground">Options preferences</strong> — language
+                  and appearance (system / light / dark) set in Options and stored with{" "}
                   <code className="rounded bg-muted px-1.5 py-0.5 text-sm">chrome.storage.local</code>{" "}
                   on your device.
                 </li>

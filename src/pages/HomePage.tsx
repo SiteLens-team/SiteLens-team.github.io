@@ -9,10 +9,10 @@ import {
   LayersIcon,
   LocateIcon,
   LockIcon,
-  MapIcon,
   MousePointerClickIcon,
   ScanIcon,
   SearchIcon,
+  SettingsIcon,
   ShieldCheckIcon,
   TerminalIcon,
   ZapIcon,
@@ -26,6 +26,7 @@ import {
   HIGHLIGHTS,
   MODULES,
   PRODUCT,
+  SURFACES,
 } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
@@ -43,12 +44,15 @@ const extraModuleIcons = {
   security: ShieldCheckIcon,
 } as const
 
+const surfaceIcons = {
+  options: SettingsIcon,
+  mcp: TerminalIcon,
+} as const
+
 const highlightIcons = {
   locate: LocateIcon,
   export: DownloadIcon,
   languages: GlobeIcon,
-  "site-audit": MapIcon,
-  mcp: TerminalIcon,
 } as const
 
 function InstallCta({ className, size = "lg" }: { className?: string; size?: "default" | "lg" }) {
@@ -175,17 +179,43 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* Also included */}
+        {/* Options + MCP surfaces, then panel extras */}
         <section className="border-y border-border/70 bg-card/30 py-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
             <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Also included
+              Options and MCP
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Beyond the scored scan: locate and export on every page, seven UI languages, a whole-site
-              crawl in Options, and an optional local MCP bridge for agents.
+              Beyond the scored panel: open <strong className="font-medium text-foreground">Options</strong> for
+              language, appearance, and Site Audit, or use optional{" "}
+              <strong className="font-medium text-foreground">Send to MCP</strong> to hand a report to local
+              Cursor agents.
             </p>
-            <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+
+            <ul className="mt-10 grid gap-4 lg:grid-cols-2">
+              {SURFACES.map((item) => {
+                const Icon = surfaceIcons[item.id]
+                return (
+                  <li
+                    key={item.id}
+                    className="rounded-2xl border border-border/80 bg-background px-5 py-5 shadow-[0_12px_32px_-28px_oklch(0.3_0.04_240_/_0.45)]"
+                  >
+                    <div className="mb-3 flex size-11 items-center justify-center rounded-xl bg-lens-soft text-lens">
+                      <Icon size={24} />
+                    </div>
+                    <h3 className="font-heading text-xl font-semibold text-foreground">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      {item.blurb}
+                    </p>
+                  </li>
+                )
+              })}
+            </ul>
+
+            <p className="mt-12 text-sm font-medium uppercase tracking-wide text-muted-foreground">
+              Also in every scan
+            </p>
+            <ul className="mt-4 grid gap-4 sm:grid-cols-3">
               {HIGHLIGHTS.map((item) => {
                 const Icon = highlightIcons[item.id]
                 return (
@@ -275,8 +305,8 @@ export function HomePage() {
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Deliberately no AI, no account, and no server. Everything you see is derived from rules
-            running against the page you opened — including optional Site Audit crawls and Send to MCP,
-            which stay on your machine.
+            running against the page you opened — including Options (language, theme, Site Audit) and
+            optional Send to MCP, which stay on your machine.
           </p>
 
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

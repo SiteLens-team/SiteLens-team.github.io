@@ -59,7 +59,26 @@ export const EXTRA_MODULES = [
   },
 ] as const
 
-/** Secondary capabilities beyond the scored six + display modules. */
+/**
+ * First-class surfaces beyond the scored panel scan.
+ * Options hosts language, theme, and Site Audit; MCP is an optional local agent bridge.
+ */
+export const SURFACES = [
+  {
+    id: "options",
+    title: "Options",
+    blurb:
+      "Extension settings for UI language and appearance (auto / light / dark), plus Site Audit — a multi-page crawl with JSON, CSV, HTML, and sitemap export.",
+  },
+  {
+    id: "mcp",
+    title: "Send to MCP",
+    blurb:
+      "Optional panel action that pushes the latest report to a local sitelens-mcp bridge so Cursor agents can read it on your machine — never to a remote server.",
+  },
+] as const
+
+/** Secondary capabilities in the panel (and related UX). */
 export const HIGHLIGHTS = [
   {
     id: "locate",
@@ -74,16 +93,6 @@ export const HIGHLIGHTS = [
   {
     id: "languages",
     title: "7 languages",
-    blurb: "English, Chinese, French, Portuguese, German, Italian, and Spanish.",
-  },
-  {
-    id: "site-audit",
-    title: "Site Audit",
-    blurb: "Multi-page crawl from Options — whole-site issues, not just the tab you opened.",
-  },
-  {
-    id: "mcp",
-    title: "Send to MCP",
-    blurb: "Optional local bridge so Cursor agents can read the latest report on your machine.",
+    blurb: "English, Chinese, French, Portuguese, German, Italian, and Spanish — set in Options.",
   },
 ] as const
