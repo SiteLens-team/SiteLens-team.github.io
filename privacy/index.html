@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icons/icon_64.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — SiteLens</title>
+    <meta
+      name="description"
+      content="SiteLens privacy policy — the extension runs entirely in your browser: no AI, no server, no upload, no account."
+    />
+    <link rel="canonical" href="https://sitelens-team.github.io/privacy/" />
+    <meta name="theme-color" content="#e8f2f6" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="SiteLens" />
+    <meta property="og:title" content="Privacy Policy — SiteLens" />
+    <meta
+      property="og:description"
+      content="SiteLens runs entirely in your browser: no AI, no server, no upload, no account."
+    />
+    <meta property="og:url" content="https://sitelens-team.github.io/privacy/" />
+    <meta
+      property="og:image"
+      content="https://sitelens-team.github.io/images/07-promo-marquee-1400x560.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <style>
+      .boot-shell {
+        margin: 0;
+        min-height: 100svh;
+        background: #e8f2f6;
+        color: #10222b;
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      .boot-shell__inner {
+        margin: 0 auto;
+        max-width: 44rem;
+        padding: 14vh 1.5rem 4rem;
+      }
+      .boot-shell h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(1.9rem, 5vw, 2.75rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+      .boot-shell p {
+        margin: 0 0 1rem;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        color: #3d5763;
+      }
+      .boot-shell a {
+        color: #0b5f73;
+        font-weight: 500;
+        text-underline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      与首页同理：#root 里放政策的摘要兜底，保证不执行 JS 的抓取端和
+      商店审核也能读到「不收集数据」这一核心结论；JS 执行后被完整政策替换。
+    -->
+    <div id="root">
+      <div class="boot-shell">
+        <div class="boot-shell__inner">
+          <h1>Privacy Policy</h1>
+          <p>For SiteLens — Website &amp; SEO Analyzer (the “Extension”).</p>
+          <p>
+            SiteLens analyzes the webpage you are viewing entirely inside your browser. We do not
+            operate a backend for the Extension, we do not create accounts, we do not upload page
+            content, and we do not use artificial intelligence or third-party LLM services. SiteLens
+            collects nothing and sends nothing.
+          </p>
+          <p>
+            Preferences (language, appearance) and Site Audit results are stored locally on your
+            device with <code>chrome.storage.local</code>. Exported reports are written to a location
+            you choose.
+          </p>
+          <p><a href="/">← Back to SiteLens</a></p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

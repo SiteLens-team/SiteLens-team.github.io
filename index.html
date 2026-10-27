@@ -3,16 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icons/icon_64.png" />
+    <link rel="apple-touch-icon" href="/icons/icon_64.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SiteLens — Website &amp; SEO Analyzer</title>
     <meta
       name="description"
       content="SiteLens — One-click page analysis: tech stack, SEO, structure, CTAs, images and performance. Fully local — no AI, no server, no account."
     />
+    <link rel="canonical" href="https://sitelens-team.github.io/" />
     <meta name="theme-color" content="#e8f2f6" />
-    <title>SiteLens — Website &amp; SEO Analyzer</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="SiteLens" />
+    <meta property="og:title" content="SiteLens — Website &amp; SEO Analyzer" />
+    <meta
+      property="og:description"
+      content="One-click page analysis: tech stack, SEO, structure, CTAs, images and performance. Runs entirely in your browser — no AI, no server, no account."
+    />
+    <meta property="og:url" content="https://sitelens-team.github.io/" />
+    <meta
+      property="og:image"
+      content="https://sitelens-team.github.io/images/07-promo-marquee-1400x560.jpg"
+    />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="560" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SiteLens — Website &amp; SEO Analyzer" />
+    <meta
+      name="twitter:description"
+      content="One-click page analysis: tech stack, SEO, structure, CTAs, images and performance. Runs entirely in your browser."
+    />
+    <meta
+      name="twitter:image"
+      content="https://sitelens-team.github.io/images/07-promo-marquee-1400x560.jpg"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "SiteLens",
+        "alternateName": "SiteLens — Website & SEO Analyzer",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "url": "https://sitelens-team.github.io/",
+        "description": "One-click analysis of any page: technology stack, SEO, page structure, CTAs, images, and performance — plus accessibility and security checks. Runs entirely in the browser with no AI, no server, and no account.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+    <style>
+      /*
+       * 首屏兜底内容的样式。内联在这里而不是走 CSS 包：兜底块必须在
+       * CSS 到达之前就已经是最终样子，否则未执行 JS 的爬虫拿到的是无样式文本，
+       * 而真实用户在 React 挂载前会看到一次闪动。
+       */
+      .boot-shell {
+        margin: 0;
+        min-height: 100svh;
+        background: #e8f2f6;
+        color: #10222b;
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      .boot-shell__inner {
+        margin: 0 auto;
+        max-width: 44rem;
+        padding: 18vh 1.5rem 4rem;
+      }
+      .boot-shell h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(1.9rem, 5vw, 3rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+      .boot-shell p {
+        margin: 0 0 1.75rem;
+        max-width: 36rem;
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        color: #3d5763;
+      }
+      .boot-shell a {
+        display: inline-block;
+        margin: 0 1rem 0.75rem 0;
+        color: #0b5f73;
+        font-weight: 500;
+        text-underline-offset: 4px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!--
+      #root 里是**真实内容**的静态兜底，不是占位骨架：
+      搜索引擎、社交抓取和任何不执行 JS 的客户端读到的是这段；
+      浏览器执行 JS 后 createRoot() 会整体替换掉它，用户看到的是完整页面。
+      文案必须与 Hero 保持一致，改首页文案时同步改这里。
+    -->
+    <div id="root">
+      <div class="boot-shell">
+        <div class="boot-shell__inner">
+          <h1>SiteLens — understand any page in one click</h1>
+          <p>
+            SiteLens is a Chrome extension that analyzes the page in front of you: technology stack,
+            SEO, page structure, calls to action, images and performance, plus accessibility and
+            security checks. Everything runs in your browser — no AI, no server, no upload, no
+            account.
+          </p>
+          <p>
+            <a href="https://chromewebstore.google.com/detail/sitelens-%E2%80%94-website-seo-an/jjmmmpgikmdibpffiphnbaopgpafpgih"
+              >Add to Chrome</a
+            >
+            <a href="/privacy/">Privacy Policy</a>
+          </p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

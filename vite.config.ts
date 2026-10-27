@@ -13,4 +13,14 @@ export default defineConfig({
       "@": path.resolve(rootDir, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      // Emit /privacy/ as a real static page so a direct visit (and the
+      // Chrome Web Store privacy-policy link) returns 200 instead of 404.
+      input: {
+        main: path.resolve(rootDir, "index.html"),
+        privacy: path.resolve(rootDir, "privacy/index.html"),
+      },
+    },
+  },
 })

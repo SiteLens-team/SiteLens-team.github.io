@@ -1,5 +1,6 @@
 /** Chrome Web Store listing URL — set when published. Empty = show coming-soon CTA. */
-export const CHROME_STORE_URL = ""
+export const CHROME_STORE_URL =
+  "https://chromewebstore.google.com/detail/sitelens-%E2%80%94-website-seo-an/jjmmmpgikmdibpffiphnbaopgpafpgih"
 
 export const PRODUCT = {
   name: "SiteLens",
@@ -60,21 +61,29 @@ export const EXTRA_MODULES = [
 ] as const
 
 /**
- * First-class surfaces beyond the scored panel scan.
- * Options hosts language, theme, and Site Audit; MCP is an optional local agent bridge.
+ * The Options surface, broken into its three first-class capabilities.
+ * Shown in its own section — Options is not a buried setting, it's the
+ * extension's control room.
  */
-export const SURFACES = [
+export const OPTIONS = [
   {
-    id: "options",
-    title: "Options",
+    id: "language",
+    title: "Language",
     blurb:
-      "Extension settings for UI language and appearance (auto / light / dark), plus Site Audit — a multi-page crawl with JSON, CSV, HTML, and sitemap export.",
+      "Switch the whole panel to any of 7 languages — English, Chinese, French, Portuguese, German, Italian, Spanish — without leaving the page.",
   },
   {
-    id: "mcp",
-    title: "Send to MCP",
+    id: "appearance",
+    title: "Appearance",
     blurb:
-      "Optional panel action that pushes the latest report to a local sitelens-mcp bridge so Cursor agents can read it on your machine — never to a remote server.",
+      "Auto, light, or dark. The settings panel follows your OS preference or a fixed choice you set once.",
+  },
+  {
+    id: "audit",
+    title: "Site Audit",
+    blurb:
+      "Crawl a whole site — not just one page — from the Service Worker, seeded by the sitemap so single-page apps are covered too.",
+    exports: ["JSON", "CSV", "HTML", "Sitemap"],
   },
 ] as const
 

@@ -9,12 +9,11 @@ import {
   LayersIcon,
   LocateIcon,
   LockIcon,
+  MoonStarIcon,
   MousePointerClickIcon,
   ScanIcon,
   SearchIcon,
-  SettingsIcon,
   ShieldCheckIcon,
-  TerminalIcon,
   ZapIcon,
 } from "@animateicons/react/lucide"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -25,8 +24,8 @@ import {
   EXTRA_MODULES,
   HIGHLIGHTS,
   MODULES,
+  OPTIONS,
   PRODUCT,
-  SURFACES,
 } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
@@ -44,9 +43,10 @@ const extraModuleIcons = {
   security: ShieldCheckIcon,
 } as const
 
-const surfaceIcons = {
-  options: SettingsIcon,
-  mcp: TerminalIcon,
+const optionIcons = {
+  language: GlobeIcon,
+  appearance: MoonStarIcon,
+  audit: ScanIcon,
 } as const
 
 const highlightIcons = {
@@ -82,13 +82,13 @@ export function HomePage() {
     <div className="flex min-h-svh flex-col">
       <SiteHeader />
       <main className="flex-1">
-        {/* Hero — one composition: brand, headline, line, CTAs, dominant image */}
+        {/* ————— 00 · Hero — one composition: brand, headline, line, CTAs, dominant image ————— */}
         <section className="relative overflow-hidden">
           <div
             aria-hidden
             className="lens-glow pointer-events-none absolute left-1/2 top-24 size-[36rem] -translate-x-1/2 rounded-full bg-lens-soft blur-3xl"
           />
-          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-6 pt-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-end lg:gap-12 lg:pt-20">
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pb-8 pt-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-end lg:gap-14 lg:pt-24">
             <div className="max-w-xl">
               <p className="animate-rise font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 {PRODUCT.name}
@@ -112,7 +112,7 @@ export function HomePage() {
             </div>
 
             <div className="animate-rise animate-rise-delay-2 relative">
-              <div className="overflow-hidden rounded-2xl border border-border/80 bg-card shadow-[0_24px_60px_-28px_oklch(0.3_0.04_240_/_0.45)]">
+              <div className="overflow-hidden border border-border bg-card shadow-[0_24px_60px_-28px_oklch(0.3_0.04_240_/_0.45)]">
                 <img
                   src="/images/07-promo-marquee-1400x560.jpg"
                   alt="SiteLens analyzing a live webpage with scores for technology, SEO, structure, CTAs, images and performance, plus accessibility and security checks"
@@ -125,9 +125,10 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* Six scored questions + display modules */}
-        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="font-heading max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        {/* ————— 01 · The exam — six scored questions ————— */}
+        <section className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <p className="section-kicker">01 · The exam</p>
+          <h2 className="mt-5 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Six scored answers. One local scan.
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
@@ -136,109 +137,158 @@ export function HomePage() {
             checks show up alongside them without changing the Website Score formula.
           </p>
 
-          <ul className="mt-12 grid gap-3 sm:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2">
             {MODULES.map((mod) => {
               const Icon = moduleIcons[mod.id]
               return (
-                <li
-                  key={mod.id}
-                  className="group flex gap-4 rounded-2xl border border-transparent bg-card/60 px-4 py-4 transition-colors hover:border-border hover:bg-card"
-                >
-                  <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-xl bg-lens-soft text-lens">
-                    <Icon size={22} />
+                <div key={mod.id} className="group bg-background p-5 transition-colors hover:bg-card">
+                  <div className="flex items-start gap-4">
+                    <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center bg-lens-soft text-lens">
+                      <Icon size={22} />
+                    </div>
+                    <div>
+                      <p className="font-heading text-lg font-medium text-foreground">{mod.question}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{mod.blurb}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-heading text-lg font-medium text-foreground">{mod.question}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{mod.blurb}</p>
-                  </div>
-                </li>
+                </div>
               )
             })}
-          </ul>
+          </div>
 
-          <div className="mt-10 rounded-2xl border border-border/80 bg-card/40 p-5 sm:p-6">
-            <p className="text-sm font-medium uppercase tracking-wide text-muted-foreground">
+          <div className="hairline mt-10" />
+          <div className="mt-8 grid gap-8 sm:grid-cols-[auto_1fr]">
+            <p className="mono-mark uppercase tracking-wide text-muted-foreground">
               Also in the panel · display only
             </p>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-6 sm:grid-cols-2">
               {EXTRA_MODULES.map((mod) => {
                 const Icon = extraModuleIcons[mod.id]
                 return (
-                  <li key={mod.id} className="flex gap-4 rounded-xl bg-background/70 px-3 py-3">
-                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-lens-soft text-lens">
+                  <div key={mod.id} className="flex gap-4">
+                    <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center bg-lens-soft text-lens">
                       <Icon size={20} />
                     </div>
                     <div>
                       <p className="font-heading text-base font-medium text-foreground">{mod.question}</p>
                       <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{mod.blurb}</p>
                     </div>
-                  </li>
+                  </div>
                 )
               })}
-            </ul>
+            </div>
           </div>
         </section>
 
-        {/* Options + MCP surfaces, then panel extras */}
-        <section className="border-y border-border/70 bg-card/30 py-16">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <h2 className="font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Options and MCP
+        {/* ————— 02 · Options — the control room, a first-class chapter ————— */}
+        <section className="relative border-y border-border/70 bg-card/40 py-20">
+          <div className="report-grid pointer-events-none absolute inset-0" aria-hidden />
+          <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="section-kicker">02 · The control room</p>
+            <h2 className="mt-5 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+              Options — where you steer the extension
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
-              Beyond the scored panel: open <strong className="font-medium text-foreground">Options</strong> for
-              language, appearance, and Site Audit, or use optional{" "}
-              <strong className="font-medium text-foreground">Send to MCP</strong> to hand a report to local
-              Cursor agents.
+              Not a buried settings menu. Options is the extension&apos;s home: pick your language and
+              appearance, and run a full-site audit that goes far beyond the single-page panel.
             </p>
 
-            <ul className="mt-10 grid gap-4 lg:grid-cols-2">
-              {SURFACES.map((item) => {
-                const Icon = surfaceIcons[item.id]
-                return (
-                  <li
-                    key={item.id}
-                    className="rounded-2xl border border-border/80 bg-background px-5 py-5 shadow-[0_12px_32px_-28px_oklch(0.3_0.04_240_/_0.45)]"
-                  >
-                    <div className="mb-3 flex size-11 items-center justify-center rounded-xl bg-lens-soft text-lens">
-                      <Icon size={24} />
-                    </div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {item.blurb}
-                    </p>
-                  </li>
-                )
-              })}
-            </ul>
+            <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:items-center">
+              <div>
+                <div className="grid gap-px overflow-hidden border border-border bg-border">
+                  {OPTIONS.map((opt) => {
+                    const Icon = optionIcons[opt.id]
+                    return (
+                      <div key={opt.id} className="bg-background p-5">
+                        <div className="flex items-start gap-4">
+                          <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center bg-lens-soft text-lens">
+                            <Icon size={22} />
+                          </div>
+                          <div>
+                            <h3 className="font-heading text-lg font-semibold text-foreground">
+                              {opt.title}
+                            </h3>
+                            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                              {opt.blurb}
+                            </p>
+                            {"exports" in opt && opt.exports ? (
+                              <div className="mt-3 flex flex-wrap items-center gap-2">
+                                {opt.exports.map((fmt) => (
+                                  <span
+                                    key={fmt}
+                                    className="mono-mark inline-flex items-center border border-border px-2 py-1 text-foreground"
+                                  >
+                                    {fmt}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                  The panel follows your language and theme choice everywhere — the floating report,
+                  the popup, and this settings page.
+                </p>
+              </div>
 
-            <p className="mt-12 text-sm font-medium uppercase tracking-wide text-muted-foreground">
-              Also in every scan
-            </p>
-            <ul className="mt-4 grid gap-4 sm:grid-cols-3">
-              {HIGHLIGHTS.map((item) => {
-                const Icon = highlightIcons[item.id]
-                return (
-                  <li
-                    key={item.id}
-                    className="rounded-2xl border border-border/70 bg-background/80 px-4 py-4"
-                  >
-                    <div className="mb-3 text-lens">
-                      <Icon size={24} />
-                    </div>
-                    <h3 className="font-heading text-base font-medium text-foreground">{item.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.blurb}</p>
-                  </li>
-                )
-              })}
-            </ul>
+              <figure>
+                <div className="overflow-hidden border border-border bg-card shadow-[0_18px_40px_-24px_oklch(0.3_0.04_240_/_0.4)]">
+                  <img
+                    src="/images/options-light.png"
+                    alt="SiteLens Options page: a left navigation rail with Start site audit, Overview, Site Audit and About links, an appearance switch for system, light and dark themes, and a top bar with a language picker"
+                    width={1280}
+                    height={800}
+                    loading="lazy"
+                    className="block h-auto w-full"
+                  />
+                </div>
+                <figcaption className="mt-3 text-sm text-muted-foreground">
+                  The Options page: language and appearance controls on the shell, with Site Audit
+                  one click away — live in the extension.
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </section>
 
-        {/* Product proof from store assets */}
-        <section className="border-b border-border/70 bg-card/40 py-20">
+        {/* ————— 03 · Also in every scan ————— */}
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <p className="section-kicker">03 · Also in every scan</p>
+          <h2 className="mt-5 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            Beyond the score
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            No setup, no account. Every panel scan ships with page-level actions and export you can
+            use on the spot.
+          </p>
+
+          <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-3">
+            {HIGHLIGHTS.map((item) => {
+              const Icon = highlightIcons[item.id]
+              return (
+                <div key={item.id} className="bg-background p-5">
+                  <div className="text-lens">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="mt-3 font-heading text-base font-medium text-foreground">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.blurb}</p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+        {/* ————— 04 · Proof — product screenshots from the listing ————— */}
+        <section className="border-y border-border/70 bg-card/40 py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+            <p className="section-kicker">04 · Proof</p>
+            <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               See it on a real page
             </h2>
             <p className="mt-3 max-w-2xl text-muted-foreground">
@@ -247,7 +297,7 @@ export function HomePage() {
               core scored modules.
             </p>
 
-            <div className="mt-12 grid gap-8">
+            <div className="mt-12 grid gap-10">
               {[
                 {
                   src: "/images/01-overview-1280x800.jpg",
@@ -276,9 +326,12 @@ export function HomePage() {
                   title: "Quick performance check",
                   caption: "Local Web Vitals and resource weight — a fast read, not a Lighthouse report.",
                 },
-              ].map((shot) => (
-                <figure key={shot.src} className="grid gap-4 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-                  <div className="overflow-hidden rounded-2xl border border-border bg-background shadow-[0_18px_40px_-24px_oklch(0.3_0.04_240_/_0.4)]">
+              ].map((shot, i) => (
+                <figure
+                  key={shot.src}
+                  className="grid gap-4 lg:grid-cols-[1.4fr_1fr] lg:items-center"
+                >
+                  <div className="overflow-hidden border border-border bg-background shadow-[0_18px_40px_-24px_oklch(0.3_0.04_240_/_0.4)]">
                     <img
                       src={shot.src}
                       alt={shot.title}
@@ -289,7 +342,10 @@ export function HomePage() {
                     />
                   </div>
                   <figcaption>
-                    <h3 className="font-heading text-2xl font-semibold text-foreground">{shot.title}</h3>
+                    <p className="mono-mark text-lens">{String(i + 1).padStart(2, "0")}</p>
+                    <h3 className="mt-2 font-heading text-2xl font-semibold text-foreground">
+                      {shot.title}
+                    </h3>
                     <p className="mt-2 text-muted-foreground">{shot.caption}</p>
                   </figcaption>
                 </figure>
@@ -298,18 +354,19 @@ export function HomePage() {
           </div>
         </section>
 
-        {/* Local privacy commitments */}
+        {/* ————— 05 · The point — privacy ————— */}
         <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <h2 className="font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          <p className="section-kicker">05 · The point</p>
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             Privacy is the product
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
             Deliberately no AI, no account, and no server. Everything you see is derived from rules
-            running against the page you opened — including Options (language, theme, Site Audit) and
-            optional Send to MCP, which stay on your machine.
+            running against the page you opened — including Options (language, theme, Site Audit) —
+            and stays on your machine.
           </p>
 
-          <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 icon: HardDriveIcon,
@@ -332,11 +389,11 @@ export function HomePage() {
                 body: "Full JSON or CSV downloads stay under your control.",
               },
             ].map((item) => (
-              <li key={item.title}>
-                <div className="mb-3 text-lens">
+              <li key={item.title} className="bg-background p-5">
+                <div className="text-lens">
                   <item.icon size={28} />
                 </div>
-                <h3 className="font-heading text-lg font-medium text-foreground">{item.title}</h3>
+                <h3 className="mt-3 font-heading text-lg font-medium text-foreground">{item.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
               </li>
             ))}

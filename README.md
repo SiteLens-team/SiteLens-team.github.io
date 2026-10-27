@@ -19,14 +19,14 @@ pnpm preview
 
 ## Chrome Web Store CTA
 
-`CHROME_STORE_URL` in `src/lib/constants.ts` is empty until the listing is live — the site shows **Coming soon**. Set a real store URL there when the extension is published.
+`CHROME_STORE_URL` in `src/lib/constants.ts` is set to the live listing, so the header and hero CTAs render **Add to Chrome**. If it is ever emptied, both surfaces fall back to a disabled **Coming soon on Chrome Web Store** button.
 
 ## Privacy URL
 
-Use `https://sitelens-team.github.io/privacy` as the Chrome Web Store privacy policy link once you submit the listing.
+Use `https://sitelens-team.github.io/privacy/` (trailing slash) as the Chrome Web Store privacy policy link. `/privacy/` is built as a real static page (`privacy/index.html`), so it returns `200` instead of relying on the SPA 404 fallback. GitHub Pages redirects `/privacy` → `/privacy/`.
 
 ## Extension surfaces called out on the site
 
 - **Options** — language, appearance (auto / light / dark), and Site Audit
-- **Send to MCP** — optional local Cursor bridge from the panel
+- **Site Audit** — multi-page crawl with JSON / CSV / HTML / sitemap export
 
